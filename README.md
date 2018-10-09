@@ -1,2 +1,2 @@
 # SwiftyTroupe
-Yet another Actor Model implementation for Swift
+Sandbox for experiments with Actor Model
