@@ -12,17 +12,12 @@ class Troupe {
 
     static let `default` = Troupe()
 
-    var notificationCenter: NotificationCenter {
-        return _notificationCenter
-    }
-
-    private let _notificationCenter = NotificationCenter()
+    let notificationCenter = NotificationCenter()
 
     private let lock = NSRecursiveLock()
     private var refs: [String: ActorRef] = [String: ActorRef]()
 
     private init() {}
-
 
     // TODO: Name -> ?
 
@@ -45,10 +40,10 @@ class Troupe {
         let notification = Notification(name: sender.notificationName, object: nil, userInfo: [sender.notificationName: message])
         if onMainThread {
             DispatchQueue.main.async {
-                self._notificationCenter.post(notification)
+                self.notificationCenter.post(notification)
             }
         } else {
-            _notificationCenter.post(notification)
+            notificationCenter.post(notification)
         }
     }
 
